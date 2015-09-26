@@ -25,15 +25,13 @@ def tobw(gray):
     return gray < 128
 
 def koponging(bw):
-    target = np.copy(bw)
-    ''' `this _probably_ takes a lot of memory`
-        AND-ing binary image with its rolled down, up, right, left
-        to get filling index (target for removal) '''
+    # this `probably` takes a lot of memory
+    target = np.copy(bw) # target is index of removal
     target[:] *= np.roll(bw, 1, 0)  # roll down
     target[:] *= np.roll(bw, -1, 0) # roll up
     target[:] *= np.roll(bw, 1, 1)  # roll right
     target[:] *= np.roll(bw, -1, 1) # roll left
-    return bw - target # remove filling by substracting it with target
+    return bw - target # change to False for target
 
 # def koponging(bw):
     # kopong = np.copy(bw)

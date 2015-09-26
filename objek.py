@@ -2,15 +2,14 @@ import numpy as np
 import json
 
 def getpixels(kopong):
-    ''' returns [[x1, x2, ..., xn],
-                 [y1, y2, ..., yn]] '''
-    return np.asarray(kopong.nonzero())[[1,0]]
+    return np.asarray(kopong.nonzero())[[1,0]] # returns [[x1, x2, ..., xn],
+                                               #          [y1, y2, ..., yn]]
 
 def getcenter(pixels):
     return pixels.mean(1)
 
 def getfeature(kopong, pixels, center):
-    feature = np.zeros((4, 8))
+    feature = np.zeros((4, 8)) # 1st axis is kuadran, 2nd axis is code of chain code
     for i in range(0, pixels.shape[1]): # for every pixel
         if pixels[0, i] >= center[0]:
             kuadran = 0 if pixels[1, i] >= center[1] else 1
