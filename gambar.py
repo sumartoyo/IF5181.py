@@ -10,13 +10,13 @@ def show(img):
     plt.show()
 
 def asimg(matrix):
-    matrixr = (matrix-1)*-255 if matrix.dtype == 'bool' else np.copy(matrix)
+    matrixr = (matrix-1)*-255 if matrix.dtype == 'bool' else np.asarray(matrix)
     return (matrixr.reshape(matrixr.shape + (1,))
                    .repeat(3, -1)
                    .astype(np.uint8))
 
 def asgray(img):
-    imgr = img*255 if img.dtype == 'float32' else np.copy(img)
+    imgr = img*255 if img.dtype == 'float32' else np.asarray(img)
     return (imgr.mean(-1)
                 .round()
                 .astype(np.uint8))
